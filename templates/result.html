@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion Complete — PDF2LaTeX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <span class="logo-star">✦</span>
+            PDF2LaTeX
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Convert another</a>
+        </div>
+
+    </nav>
+
+
+    <main class="result-page">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <div class="badge">
+            ✦ Conversion complete
+        </div>
+
+
+        <h1>
+            Your LaTeX project<br>
+            <span>is ready.</span>
+        </h1>
+
+
+        <p class="result-subtitle">
+            We've extracted the text and images from your PDF
+            and packaged everything into a LaTeX project.
+        </p>
+
+
+        <div class="file-card">
+
+            <div class="file-icon">
+                📄
+            </div>
+
+            <div class="file-info">
+
+                <strong>
+                    {{ filename }}
+                </strong>
+
+                <span>
+                    PDF successfully processed
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <strong>
+                    {{ page_count }}
+                </strong>
+
+                <span>
+                    Pages
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    {{ image_count }}
+                </strong>
+
+                <span>
+                    Images
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    .TEX
+                </strong>
+
+                <span>
+                    Included
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="/download/{{ project_name }}"
+            class="download-button"
+        >
+            Download LaTeX Project
+            <span>↓</span>
+        </a>
+
+
+        <a href="/" class="again">
+            ← Convert another PDF
+        </a>
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            ✦ Your PDF went in. Your LaTeX project came out.
+        </span>
+
+    </footer>
+
+</body>
+
+</html>

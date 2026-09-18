@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDF2LaTeX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="background-stars"></div>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <span class="logo-star">✦</span>
+            PDF2LaTeX
+        </div>
+
+        <div class="nav-links">
+            <a href="#">About</a>
+            <a href="#">How it works</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <main class="hero">
+
+        <div class="badge">
+            ✦ PDF → LaTeX
+        </div>
+
+
+        <h1>
+            Turn your PDFs into
+            <span>LaTeX projects.</span>
+        </h1>
+
+
+        <p class="subtitle">
+            Extract text, images and document structure
+            from your PDF and turn them into an
+            editable LaTeX project.
+        </p>
+
+
+        <!-- UPLOAD FORM -->
+
+        <form
+            action="/upload"
+            method="POST"
+            enctype="multipart/form-data"
+            class="upload-form"
+        >
+
+            <label
+                for="pdf-file"
+                class="upload-box"
+                id="uploadBox"
+            >
+
+                <!-- DEFAULT STATE -->
+
+                <div
+                    class="upload-content"
+                    id="uploadContent"
+                >
+
+                    <div class="upload-icon">
+                        <span>⌁</span>
+                    </div>
+
+                    <h2>
+                        Drop your PDF here
+                    </h2>
+
+                    <p>
+                        or <span>browse your files</span>
+                    </p>
+
+                    <small>
+                        PDF files only · Max size depends on server
+                    </small>
+
+                </div>
+
+
+                <!-- SELECTED FILE STATE -->
+
+                <div
+                    class="selected-file"
+                    id="selectedFile"
+                >
+
+                    <div class="pdf-symbol">
+                        PDF
+                    </div>
+
+                    <div class="selected-file-info">
+
+                        <strong id="selectedFileName">
+                            document.pdf
+                        </strong>
+
+                        <span id="selectedFileSize">
+                            PDF document
+                        </span>
+
+                    </div>
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                </div>
+
+            </label>
+
+
+            <input
+                type="file"
+                id="pdf-file"
+                name="pdf"
+                accept=".pdf,application/pdf"
+                required
+                onchange="showFile(this)"
+            >
+
+
+            <!-- CONVERT BUTTON -->
+
+            <button
+                type="submit"
+                class="convert-button"
+            >
+
+                <span>Convert to LaTeX</span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
+
+        </form>
+
+
+        <!-- PROCESS -->
+
+        <div class="process">
+
+            <div class="process-item">
+
+                <span>01</span>
+
+                Upload PDF
+
+            </div>
+
+
+            <div class="line"></div>
+
+
+            <div class="process-item">
+
+                <span>02</span>
+
+                Extract
+
+            </div>
+
+
+            <div class="line"></div>
+
+
+            <div class="process-item">
+
+                <span>03</span>
+
+                Get LaTeX
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <span>
+            ✦ Made with love for people who speak LaTeX
+        </span>
+
+    </footer>
+
+
+    <script>
+
+        function showFile(input) {
+
+            const uploadContent =
+                document.getElementById("uploadContent");
+
+            const selectedFile =
+                document.getElementById("selectedFile");
+
+            const fileName =
+                document.getElementById("selectedFileName");
+
+            const fileSize =
+                document.getElementById("selectedFileSize");
+
+            if (input.files.length > 0) {
+
+                const file = input.files[0];
+
+                fileName.textContent = file.name;
+
+                const sizeMB =
+                    file.size / (1024 * 1024);
+
+                if (sizeMB < 1) {
+
+                    fileSize.textContent =
+                        Math.round(file.size / 1024) + " KB · PDF";
+
+                } else {
+
+                    fileSize.textContent =
+                        sizeMB.toFixed(1) + " MB · PDF";
+
+                }
+
+                uploadContent.style.display = "none";
+
+                selectedFile.style.display = "flex";
+
+            } else {
+
+                uploadContent.style.display = "flex";
+
+                selectedFile.style.display = "none";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
